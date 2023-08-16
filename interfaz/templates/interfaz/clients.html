@@ -1,0 +1,9 @@
+{% if clients %}
+    <ul>
+    {% for client in clients %}
+        <li><a href="{% url 'client' client.first_name %}">{{ client.first_name }} {{ client.last_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay clientes disponibles.</p>
+{% endif %}

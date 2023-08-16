@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "puntodeventa"
+version = "0.1.0"
+description = ""
+authors = ["NicolasAgustin <nickrak10@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "^4.2.4"
+poethepoet = "^0.22.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poe.tasks]
+run = "poetry run manage.py runserver"
+app = "poetry run manage.py startapp "
+migrate = "poetry run manage.py migrate"
+makemigrations = "poetry run manage.py makemigrations"
+check = "poetry run manage.py check"
+shell = "poetry run manage.py shell"
+superuser = "poetry run manage.py createsuperuser"
+flush = "poetry run manage.py flush"
+black = "poetry run black . -l 100"
+
+deploy = {shell = "poe black && poe check && poe flush --noinput && poe makemigrations && poe migrate && poe run"}
