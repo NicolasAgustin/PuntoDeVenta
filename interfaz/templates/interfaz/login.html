@@ -28,21 +28,31 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h2 class="card-title">Ingresar</h2>
-                <form action="/login" method="post">
-                    {% bootstrap_form_errors form fields %}
-                    {% csrf_token %}
-        
-                    {% bootstrap_form form %}
-                    {% buttons %}
-                    <button type="submit" class="btn btn-primary">
-                        Submit
-                    </button>
-                    {% endbuttons %}
-                </form>
+        <div class="bg-image" 
+            style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+            height: 100vh">
+
+            <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 800px">
+                <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 25rem;">
+                    <div class="card-body">
+                        <h2 class="card-title">Iniciar sesion</h2>
+                        <form action="/login" method="post">
+                            {% bootstrap_form_errors form fields %}
+                            {% csrf_token %}
+                
+                            {% bootstrap_form form %}
+                            {% buttons %}
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">
+                                    Ingresar
+                                </button>
+                            </div>
+                            {% endbuttons %}
+                        </form>
+                    </div>
+                </div>
             </div>
+
         </div>
 
         <script src="" async defer></script>

@@ -7,6 +7,7 @@ from django.http import HttpRequest
 from interfaz.forms import LoginForm
 
 from interfaz.models import Client
+from interfaz.services import auth_service
 
 """TODO:
     - Revisar autenticacion
@@ -14,6 +15,7 @@ from interfaz.models import Client
     - Revisar permisos
     - Revisar manejo de errores
     - Revisar templating
+    - Revisar session y contexto
 
 """
 
@@ -29,7 +31,13 @@ def login(request: HttpRequest):
         form = LoginForm(request.POST)
 
         if form.is_valid():
-            return HttpResponseRedirect("/clients")
+            try:
+                auth_service.auth_user(form.cleaned_data)
+            except Exception:
+                form.add_error("username", "Usuario o contrasena incorrecta")
+                form.add_error("password", "")
+            else:
+                return HttpResponseRedirect("/clients")
     else:
         form = LoginForm()
 
