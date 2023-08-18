@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        {# Load the tag library #}
+        {% load bootstrap5 %}
+
+        {# Load CSS and JavaScript #}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
+        {# Display django.contrib.messages as Bootstrap alerts #}
+        {% bootstrap_messages %}
+        {% load static %}
+        {% comment %} {% static 'static_jquery/js/jquery.js' %} {% endcomment %}
+        {% comment %} <script src="{{ STATIC_URL }}/jquery.js"></script> {% endcomment %}
+        <script src="{% static 'jquery.js'%}"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="container" style="margin: 5px">
+            <div class="row">
+                Header
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="list-group">
+                        {% for label in labels %}
+                            {% comment %} <div class="row">
+                                {% buttons %}
+                                <button class="btn btn-primary">
+                                    {{ label }}
+                                {% endbuttons %}
+                            </div> {% endcomment %}
+                            <a href="#" class="list-group-item list-group-item-action menu" name={{label.1}}  aria-current="true">
+                                {{label.0}}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-8" id="display">
+                    Column
+                </div>
+            </div>
+        </div>
+
+        {% comment %} <script src="scripts/menu_selector.js" async defer></script>
+        {% endcomment %}
+
+        <script>
+            $(document).ready(function () {
+                $('.menu').on('click', function (elem) {
+
+                    console.log(elem.target.name)
+
+                    $.ajax({
+                        url: `/client/${elem.target.name}`,
+                        type: "GET",
+                        success: function (data) {
+                            $("#display").html(data)
+                        }
+                    })
+                })
+            })
+        </script>
+    </body>
+</html>
