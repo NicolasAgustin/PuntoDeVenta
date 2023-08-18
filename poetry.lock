@@ -231,6 +231,21 @@ django = ">=2.2,<5.0"
 docs = ["m2r2 (>=0.2.5,<0.3.0)", "sphinx (>=4.4,<5.0)", "sphinx_rtd_theme (>=1.0,<2.0)"]
 
 [[package]]
+name = "django-jquery"
+version = "3.1.0"
+description = "jQuery packaged in an handy django app to speed up new applications and deployment."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-jquery-3.1.0.tar.gz", hash = "sha256:414ac1083708ac71cc771612e7287702c939d06cd357fd53bb1271a4f6255115"},
+    {file = "django_jquery-3.1.0-py2.py3-none-any.whl", hash = "sha256:e7e2ac14234bac26be937e448d94efd6d37ee2f3cdbaa2def3c8e74c2afb2b9a"},
+]
+
+[package.dependencies]
+Django = ">=1.3"
+
+[[package]]
 name = "pastel"
 version = "0.2.1"
 description = "Bring colors to your terminal."
@@ -341,4 +356,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "93d11549a7edeb039e0faff504fbe3079e6ec46741970cb59dd144fd7acc74a3"
+content-hash = "ee6b7bd7b9ce0323b74a7da306445ea3eb838e685e78f6c54fc1ac559a13f3e1"
