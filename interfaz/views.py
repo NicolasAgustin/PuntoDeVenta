@@ -11,7 +11,6 @@ from interfaz.services import auth_service
 
 """TODO:
     - Revisar autenticacion
-    - Revisar bootstrap
     - Revisar permisos
     - Revisar manejo de errores
     - Revisar templating
@@ -42,6 +41,17 @@ def login(request: HttpRequest):
         form = LoginForm()
 
     return render(request, "interfaz/login.html", {"form": form})
+
+
+def home(request: HttpRequest):
+
+    if request.method == "GET":
+
+        botones = ["Nueva venta", "Clientes", "Proveedor", "Productos", "Ventas", "Configuracion"]
+        names = [x.lower().replace(" ", "_") for x in botones]
+
+        return render(request, "interfaz/home.html", {"labels": zip(botones, names)})
+
 
 def client(request, name):
     response = "Estas buscando el cliente llamado %s" % name
